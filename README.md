@@ -9,5 +9,16 @@ The following notes are important:
 - The server runs on a predefined PORT # 3002.  This can be easily changed as well.
 - Right now all chat users share the same chat room (i.e. there is only one room).  Multiple chat rooms can be easily created as well.
 
-
 Please read the README file in the repo for instructions on building and launching the server.
+
+----  The above should do it for a simple install and deployment for demonstration purposes and private use.
+----  Of course more work needed to productize the same.
+
+--------------------------------
+
+Here's how to dockerize the same so that it can be deployed as containers and managed with container tools.
+
+Dockerizing the Text Chat Server
+- Please see the Dockerfile for instructions
+- Execute the additional docker commands to build and run the container
+- The management of containers is outside the scope of this demo.
