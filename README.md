@@ -1,2 +1,13 @@
 # text-chat
 A websocket based NodeJS served simple text chat server with chat history
+
+This is a websocket based chat server in which multiple chat users can point to the same webpage and chat using a screen name they type in.   This server maintains history as well and upon launching the chat page, the user will see the last 15 lines in the shared chat history.  The entire chat history is also save in another file.
+
+The following notes are important:
+- The mechanism of choosing a screen name can be easily modified to use secure credentials, thereby authenticating a chat user.
+- The mechanism of saving history and choosing to display last 15 lines of chat history can be easily modified to suit your needs.
+- The server runs on a predefined PORT # 3002.  This can be easily changed as well.
+- Right now all chat users share the same chat room (i.e. there is only one room).  Multiple chat rooms can be easily created as well.
+
+
+Please read the README file in the repo for instructions on building and launching the server.
