@@ -22,3 +22,41 @@ Dockerizing the Text Chat Server
 - Please see the Dockerfile for instructions
 - Execute the additional docker commands to build and run the container
 - The management of containers is outside the scope of this demo.
+
+
+Detailed instructions:
+----------------------
+
+
+Assumption:
+ - You have node and npm (node package manager) already installed
+
+1. Issue the following command on the server command line:
+
+   npm install
+
+   (The above will install all the node package dependencies)
+
+2. The following will run the Text Chat Server
+
+   node index.js
+
+   (The server listens on PORT # 3002.  This can be changed in index.js or by setting the PORT environment variable)
+
+3. User can chat by pointing their web browser to:
+
+   http://localhost:3002 or the public hostname by http://www.myservername:3002
+
+---- You can stop here or read further
+
+4. If you want to run this app in a container, please read on.
+
+   [Assumption: Docker environment is already preloaded on your server]
+   (Execute the following two commands from the same directry which has the Dockerfile)
+
+   docker build -t textchatv1 .
+   docker run -d -p 3002:3002 textchatv1
+
+   (the above two commands build the docker image for textchat app as well as run the app which listens on port 3002 of the host as well port 3002 of the container - port mapped)
+   (other docker commands and container management is outside the scope of this demo)
+
