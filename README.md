@@ -55,6 +55,7 @@ Assumption:
    (Execute the following two commands from the same directry which has the Dockerfile)
 
    docker build -t textchatv1 .
+   
    docker run -d -p 3002:3002 textchatv1
 
    (the above two commands build the docker image for textchat app as well as run the app which listens on port 3002 of the host as well port 3002 of the container - port mapped)
