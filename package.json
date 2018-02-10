@@ -1,0 +1,25 @@
+{
+  "name": "textchat",
+  "version": "1.0.0",
+  "description": "Text Chat Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssvdram/text-chat.git"
+  },
+  "author": "Sai Ramamoorthy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ssvdram/text-chat/issues"
+  },
+  "homepage": "https://github.com/ssvdram/text-chat#readme",
+  "dependencies": {
+    "date-and-time": "^0.6.2",
+    "express": "^4.16.2",
+    "read-last-lines": "^1.3.0",
+    "socket.io": "^2.0.4"
+  }
+}

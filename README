@@ -1,0 +1,19 @@
+
+Assumption:
+ - You have node and npm (node package manager) already installed
+
+1. Issue the following command on the server command line:
+
+   npm install
+
+   (The above will install all the node package dependencies)
+
+2. The following will run the Text Chat Server
+
+   node index.js
+
+   (The server listens on PORT # 3002.  This can be changed in index.js or by setting the PORT environment variable)
+
+3. User can chat by pointing their web browsers to:
+
+   http://localhost:3002 or the public hostname by http://www.myservername:3002

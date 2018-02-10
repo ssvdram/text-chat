@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Text Chat</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name='viewport', content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      textarea,
+      input.text,
+      input[type="text"],
+      input[type="button"],
+      input[type="submit"],
+      .input-checkbox {
+            -webkit-appearance: none;
+            border-radius: 0;
+      } 
+
+      form { background: #191970; padding: 2px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 16px; padding: 12px 20px; width: 70%; margin-left: 1%; margin-right: 1%; font-size:16px; font-weight:bold }
+      form button { width: 28%; background: rgb(65, 175, 159); border: none; padding: 10px; font-weight:bold; font-size:16px }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { font-size:16px; font-weight: bold; padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #ccc; }
+      #messages { margin-bottom: 60px }
+
+      #history { list-style-type: none; margin: 0; padding: 0; }
+      #history li { font-size:16px; font-weight: bold; padding: 5px 10px; }
+      #history li:nth-child(odd) { background: #ccc; }
+    </style>
+
+
+    </head>
+  </head>
+  <body onload="registerUid();">
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://www.w3schools.com/lib/w3data.js"></script>
+
+    <script>
+	var uid = "MyName (type here)";
+	function registerUid() {
+    	    uid = prompt("Please enter your name", "MyName");
+	    var docFormEl = document.getElementById("m");
+	    docFormEl.placeholder = uid + ' type here ...';
+	}
+</script>
+
+    <script>
+      function loadHistory() {
+	var newDiv = document.createElement('div');
+	newDiv.id = 'block';
+	newDiv.className = 'block';
+	newDiv.setAttribute('style', 'height:auto');
+	newDiv.setAttribute('w3-include-html', '/history/historylast10.html');
+
+	var innerDiv = document.createElement('div');
+	innerDiv.className = 'block-2';
+	
+	newDiv.appendChild(innerDiv);
+	document.getElementsByTagName('body')[0].appendChild(newDiv);
+
+	w3IncludeHTML();
+
+	var newDiv2 = document.createElement('div2');
+	newDiv2.id = 'block2';
+	newDiv2.className = 'block2';
+	document.getElementsByTagName('body')[0].appendChild(newDiv2);
+
+//	Scrolling to 90% of document height
+	$('html,body').animate({ scrollTop: $(document).height() * 0.90 });
+      }
+
+      function createChatForm() {
+	var chatULEl = '<ul id="messages"></ul>';
+	var formEl = '<form action=""> <input id="m" placeholder="KAKA pls type here" autocomplete="off" /><button><b>Send</b></button> </form>';
+//	var formEl = '<form action=""> <input id="m"' + ' placeholder="' + 'KAKA' + '" + ' autocomplete="off" /><button><b>Send</b></button> </form>';
+	
+	$("div2").after(chatULEl, formEl);
+      }
+
+      $(function () {
+        var socket = io();
+	
+	loadHistory();
+	createChatForm();
+
+        $('form').submit(function(){
+          socket.emit('chat message', '[' + uid + '] '+$('#m').val());
+          $('#m').val('');
+          return false;
+        });
+        socket.on('chat message', function(msg){
+          $('#messages').append($('<li>').text(msg));
+          window.scrollTo(0, document.body.scrollHeight);
+        });
+      });
+    </script>
+  </body>
+</html>
